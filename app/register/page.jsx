@@ -48,74 +48,107 @@ export default function RegisterPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-md border rounded-xl p-6">
-          <h1 className="text-3xl font-bold mb-2">Create Account</h1>
+      <main className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-10">
+        <div className="w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-2xl border grid lg:grid-cols-2">
+          {/* Left Section */}
 
-          <p className="text-gray-500 mb-6">
-            Register to start planning trips.
-          </p>
+          <div className="hidden lg:flex flex-col justify-center bg-linear-to-br from-blue-600 via-indigo-600 to-violet-700 p-12 text-white">
+            <div className="text-6xl mb-8">✈️</div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name */}
-            <div>
-              <label className="block mb-2">Name</label>
+            <h1 className="text-5xl font-bold leading-tight">
+              Plan Smart.
+              <br />
+              Travel Better.
+            </h1>
 
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter name"
-                className="w-full border rounded-lg px-4 py-3"
-              />
+            <p className="mt-6 text-blue-100 text-lg leading-8">
+              Generate AI powered itineraries, discover hotels, estimate budgets
+              and create packing lists in just a few seconds.
+            </p>
+
+            <div className="mt-10 space-y-4 text-blue-100">
+              <p>✔ AI Trip Planner</p>
+
+              <p>✔ Budget Estimation</p>
+
+              <p>✔ Hotel Suggestions</p>
+
+              <p>✔ Packing List Generator</p>
             </div>
+          </div>
 
-            {/* Email */}
-            <div>
-              <label className="block mb-2">Email</label>
+          {/* Right Section */}
 
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter email"
-                className="w-full border rounded-lg px-4 py-3"
-              />
+          <div className="flex items-center justify-center p-8 md:p-12">
+            <div className="w-full max-w-md">
+              <h2 className="text-4xl font-bold">Create Account</h2>
+
+              <p className="mt-2 text-gray-500">
+                Start planning your next adventure.
+              </p>
+
+              <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+                <div>
+                  <label className="block mb-2 font-medium">Full Name</label>
+
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block mb-2 font-medium">
+                    Email Address
+                  </label>
+
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="john@example.com"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block mb-2 font-medium">Password</label>
+
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition"
+                  />
+                </div>
+
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="w-full rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 py-3.5 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl disabled:opacity-70"
+                >
+                  {loading ? "Creating Account..." : "Create Account"}
+                </button>
+              </form>
+
+              <p className="mt-8 text-center text-gray-600">
+                Already have an account?{" "}
+                <Link
+                  href="/login"
+                  className="font-semibold text-blue-600 hover:underline"
+                >
+                  Login
+                </Link>
+              </p>
             </div>
-
-            {/* Password */}
-            <div>
-              <label className="block mb-2">Password</label>
-
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Enter password"
-                className="w-full border rounded-lg px-4 py-3"
-              />
-            </div>
-
-            <button
-              disabled={loading}
-              type="submit"
-              className="w-full bg-black text-white py-3 rounded-lg"
-            >
-              {loading ? "Creating Account..." : "Register"}
-            </button>
-          </form>
-
-          {/* FORM KE NICHE YAHAN */}
-
-          <p className="text-center text-sm mt-4">
-            Already have an account?{" "}
-            <Link href="/login" className="font-semibold underline">
-              Login
-            </Link>
-          </p>
+          </div>
         </div>
       </main>
     </>

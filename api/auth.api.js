@@ -29,3 +29,8 @@ export const getMe = async () => {
 
   return response.data;
 };
+export const logoutUser = async () => {
+  const response = await api.post("/logout");
+
+  return response.data;
+};

@@ -56,37 +56,64 @@ export default function VerifyOtpPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-md border rounded-xl p-6">
-          <h1 className="text-3xl font-bold mb-2">Verify OTP</h1>
+      <main className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-10">
+        <div className="w-full max-w-lg rounded-3xl border bg-white shadow-2xl overflow-hidden">
+          {/* Header */}
 
-          <p className="text-gray-500 mb-6 break-all">OTP sent to {email}</p>
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-10 text-white text-center">
+            <div className="text-5xl mb-4">📧</div>
 
-          <form onSubmit={handleVerify} className="space-y-4">
-            <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              placeholder="Enter OTP"
-              className="w-full border rounded-lg px-4 py-3"
-            />
+            <h1 className="text-3xl font-bold">Verify Your Email</h1>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-black text-white py-3 rounded-lg disabled:opacity-50"
-            >
-              {loading ? "Verifying..." : "Verify OTP"}
-            </button>
-          </form>
+            <p className="mt-3 text-blue-100 break-all">
+              We've sent a verification code to
+            </p>
 
-          <button
-            onClick={handleResendOtp}
-            disabled={resending}
-            className="w-full mt-4 border py-3 rounded-lg disabled:opacity-50"
-          >
-            {resending ? "Sending..." : "Resend OTP"}
-          </button>
+            <p className="font-semibold mt-2 break-all">{email}</p>
+          </div>
+
+          {/* Body */}
+
+          <div className="p-8">
+            <form onSubmit={handleVerify} className="space-y-6">
+              <div>
+                <label className="block mb-2 font-medium">Enter OTP</label>
+
+                <input
+                  type="text"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  placeholder="Enter 4 digit OTP"
+                  maxLength={4}
+                  className="w-full rounded-xl border border-gray-300 px-4 py-4 text-center text-2xl tracking-[10px] outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {loading ? "Verifying..." : "Verify OTP"}
+              </button>
+            </form>
+
+            <div className="mt-6">
+              <button
+                onClick={handleResendOtp}
+                disabled={resending}
+                className="w-full rounded-xl border border-gray-300 bg-white py-4 font-medium transition hover:bg-gray-50 disabled:opacity-60"
+              >
+                {resending ? "Sending..." : "Resend OTP"}
+              </button>
+            </div>
+
+            <div className="mt-8 text-center text-sm text-gray-500">
+              Didn't receive the code?
+              <br />
+              Check your spam folder or resend it.
+            </div>
+          </div>
         </div>
       </main>
     </>
