@@ -149,7 +149,8 @@ export default function ItinerarySection({ trip, setTrip }) {
 
                 <button
                   onClick={() => handleRegenerateDay(day.day)}
-                  className="rounded-xl bg-white px-5 py-3 font-semibold text-blue-700 transition hover:scale-105"
+                  disabled={regeneratingDay === day.day}
+                  className="rounded-xl cursor-pointer bg-white px-5 py-3 font-semibold text-blue-700 transition hover:scale-105"
                 >
                   {regeneratingDay === day.day
                     ? "Regenrating..."
