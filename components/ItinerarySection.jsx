@@ -175,7 +175,19 @@ export default function ItinerarySection({ trip, setTrip }) {
                             {index + 1}
                           </div>
 
-                          <p className="leading-7 text-gray-700">{activity}</p>
+                          <div className="space-y-1">
+                            <p className="font-semibold text-blue-700">
+                              {typeof activity === "object"
+                                ? activity.time
+                                : "Custom"}
+                            </p>
+
+                            <p className="leading-7 text-gray-700">
+                              {typeof activity === "object"
+                                ? activity.description
+                                : activity}
+                            </p>
+                          </div>
                         </div>
 
                         <button
