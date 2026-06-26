@@ -111,7 +111,7 @@ export default function CreateTripPage() {
                 <label className="block mb-2 font-medium">Number of Days</label>
 
                 <input
-                  type="number"
+                  type="text"
                   min={1}
                   name="days"
                   placeholder="5"
