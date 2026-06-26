@@ -24,9 +24,7 @@ export default function ItinerarySection({ trip, setTrip }) {
 
       toast.success("Itinerary generated successfully");
     } catch (error) {
-      toast.error(
-        error?.response?.data?.message || "Failed to generate itinerary",
-      );
+      toast.error("Failed to generate itinerary. Ai is busy");
     } finally {
       setLoading(false);
     }
@@ -34,6 +32,7 @@ export default function ItinerarySection({ trip, setTrip }) {
 
   const handleRegenerateDay = async (dayNumber) => {
     try {
+      setLoading(true);
       const response = await regenerateDay(trip._id, dayNumber);
 
       setTrip(response.trip);
@@ -42,6 +41,9 @@ export default function ItinerarySection({ trip, setTrip }) {
     } catch (error) {
       console.error(error);
       toast.error("Failed to regenerate day. Ai is busy");
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -149,7 +151,7 @@ export default function ItinerarySection({ trip, setTrip }) {
                   onClick={() => handleRegenerateDay(day.day)}
                   className="rounded-xl bg-white px-5 py-3 font-semibold text-blue-700 transition hover:scale-105"
                 >
-                  🔄 Regenerate Day
+                  {loading ? "Regenrating..." : "🔄 Regenerate Day"}
                 </button>
               </div>
 
